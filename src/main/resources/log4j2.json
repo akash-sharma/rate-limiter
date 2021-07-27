@@ -1,0 +1,77 @@
+{
+  "configuration": {
+    "name": "ppb",
+    "properties": {
+      "property": [
+        {
+          "name": "log-path",
+          "value": "/var/log/rate-limiter/"
+        },
+        {
+          "name": "archive",
+          "value": "/var/log/rate-limiter/app-archive/"
+        },
+        {
+          "name": "pattern",
+          "value": "%X{requestId} - [%-5level] %d{yyyy-MM-dd'T'HH:mm:ss.SSS'Z'} [%t] %c{1} - %msg%n"
+        },
+        {
+          "name": "jsonPattern",
+          "value": "{\"requestId\" : \"%X{requestId}\",\"level\" : \"%-5level\",\"time\" : \"%d{yyyy-MM-dd'T'HH:mm:ss.SSS'Z'}\",\"thread\" : \"%t\",\"class\" : \"%c{1}\",\"message\" : \"%msg\"}%n"
+        }
+      ]
+    },
+    "appenders": {
+      "Console": {
+        "name": "Console-Appender",
+        "target": "SYSTEM_OUT",
+        "PatternLayout": {
+          "pattern": "${pattern}"
+        }
+      },
+      "RollingFile": [
+      {
+        "name": "RollingLogFile-Appender",
+        "fileName": "${log-path}/rate-limiter_application.log",
+        "filePattern": "${archive}/rate-limiter_application.log.%d{yyMMdd}-%i.gz",
+        "PatternLayout": {
+          "pattern": "${pattern}"
+        },
+        "Policies": {
+          "SizeBasedTriggeringPolicy": {
+            "size": "2 GB"
+          }
+        }
+      }
+      ]
+    },
+    "loggers": {
+      "logger": [
+	      {
+	        "name": "com.akash",
+	        "level": "info",
+	        "additivity": "false",
+	        "appender-ref": [
+	          {
+	            "ref": "RollingLogFile-Appender",
+	            "level": "info"
+	          }
+	        ]
+	      }
+      	],
+      "root": {
+        "level": "info",
+        "appender-ref": [
+          {
+            "ref": "Console-Appender",
+            "level": "info"
+          },
+          {
+            "ref": "RollingLogFile-Appender",
+            "level": "info"
+          }
+        ]
+      }
+    }
+  }
+}
