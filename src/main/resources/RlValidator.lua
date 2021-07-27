@@ -24,5 +24,5 @@ local function rlAllowed(rlConf)
     return passRateLimiter
 end
 
-local rlConf = cjson.decode(ARGV[1])
+local rlConf = ARGV[1]
 return rlAllowed(rlConf)

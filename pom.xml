@@ -124,6 +124,7 @@
 					<include>version</include>
 					<include>*.properties</include>
 					<include>log4j2.json</include>
+					<include>RlValidator.lua</include>
 				</includes>
 			</resource>
 			<!-- <resource> <directory>flyway</directory> </resource> -->
