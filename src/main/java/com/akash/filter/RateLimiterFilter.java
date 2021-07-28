@@ -22,7 +22,7 @@ import java.util.List;
 @Component
 public class RateLimiterFilter extends OncePerRequestFilter {
 
-  private static final Logger logger = LogManager.getLogger(RateLimiterFilter.class);
+  private static final Logger LOGGER = LogManager.getLogger(RateLimiterFilter.class);
 
   @Autowired private RateLimiterService rateLimiterService;
 
@@ -32,6 +32,7 @@ public class RateLimiterFilter extends OncePerRequestFilter {
       throws ServletException, IOException {
 
     String requestUri = request.getRequestURI();
+    LOGGER.info("requestUri : {}", requestUri);
     RLConfig rlConfig = null;
     if (Route.V1_PRODUCT.equalsIgnoreCase(requestUri)) {
       rlConfig = getV1ProductRlConfig();
@@ -40,6 +41,7 @@ public class RateLimiterFilter extends OncePerRequestFilter {
     }
 
     boolean allowed = rateLimiterService.isAllowed(rlConfig);
+    LOGGER.info("allowed : {}", allowed);
     if (!allowed) {
       response.setStatus(HttpStatus.TOO_MANY_REQUESTS.value());
       return;
@@ -50,7 +52,7 @@ public class RateLimiterFilter extends OncePerRequestFilter {
   // TODO : values can be fetched from cache or stored in memory
   private RLConfig getV1ProductRlConfig() {
     RLThreshold threshold1 = new RLThreshold(2, 500);
-    RLThreshold threshold2 = new RLThreshold(10, 2000);
+    RLThreshold threshold2 = new RLThreshold(5, 1000);
     List<RLThreshold> rlThresholds = new ArrayList<>();
     rlThresholds.add(threshold1);
     rlThresholds.add(threshold2);
@@ -59,7 +61,7 @@ public class RateLimiterFilter extends OncePerRequestFilter {
 
   private RLConfig getV2ProductRlConfig() {
     RLThreshold threshold1 = new RLThreshold(3, 400);
-    RLThreshold threshold2 = new RLThreshold(15, 1200);
+    RLThreshold threshold2 = new RLThreshold(10, 1100);
     List<RLThreshold> rlThresholds = new ArrayList<>();
     rlThresholds.add(threshold1);
     rlThresholds.add(threshold2);
