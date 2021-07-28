@@ -11,3 +11,8 @@ Use cases of a Rate limiter :
 
 (5) Disadvantage of not using Rate limiter : If one of your api exceed its threashold, more system resources like CPU, memory and threads will be consumed to serve extra requests. For example thread timeouts on ElasticSearch will increase thread usage count as a result CPU consumption will increase. So new requests will not be served and this may cause ELB 5xx. This will downgrade the performance of your own service. Also it will have a cascading effect on upstream services or clients.
 
+
+ When you execute multiple keys from single lua script, all must execute from a single node in a cluster
+ when key for lua script is "{key}mykey", then "key" is used for finding single node in a cluster by using its hash
+ 
+ https://stackoverflow.com/questions/49622787/lua-script-attempted-to-access-a-non-local-key-in-a-cluster-node
