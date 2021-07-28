@@ -5,11 +5,11 @@
       "property": [
         {
           "name": "log-path",
-          "value": "/var/log/rate-limiter/"
+          "value": "/tmp/rate-limiter/"
         },
         {
           "name": "archive",
-          "value": "/var/log/rate-limiter/app-archive/"
+          "value": "/tmp/rate-limiter/app-archive/"
         },
         {
           "name": "pattern",
