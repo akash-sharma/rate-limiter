@@ -41,4 +41,22 @@ public class RLThreshold {
   public String getEpoch() {
     return epoch;
   }
+
+  @Override
+  public String toString() {
+    return "RLThreshold{"
+        + "timeWindow="
+        + timeWindow
+        + ", threshold="
+        + threshold
+        + ", key='"
+        + key
+        + '\''
+        + ", lastWindowTime="
+        + lastWindowTime
+        + ", epoch='"
+        + epoch
+        + '\''
+        + '}';
+  }
 }
