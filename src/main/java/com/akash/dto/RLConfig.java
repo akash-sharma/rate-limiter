@@ -24,4 +24,9 @@ public class RLConfig {
   public List<RLThreshold> getRlThresholds() {
     return Collections.unmodifiableList(rlThresholds);
   }
+
+  @Override
+  public String toString() {
+    return "RLConfig{" + "clientId='" + clientId + '\'' + ", rlThresholds=" + rlThresholds + '}';
+  }
 }
