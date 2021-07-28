@@ -17,18 +17,21 @@ public class DemoController {
   @GetMapping(path = Route.V1_PRODUCT, produces = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<String> v1Product() {
 
+    LOGGER.info("{} executed", Route.V1_PRODUCT);
     return new ResponseEntity("v1 product response", HttpStatus.OK);
   }
 
   @GetMapping(path = Route.V2_PRODUCT, produces = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<String> v2Product() {
 
+    LOGGER.info("{} executed", Route.V2_PRODUCT);
     return new ResponseEntity("v2 product response", HttpStatus.OK);
   }
 
   @GetMapping(path = Route.V3_PRODUCT, produces = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<String> v3Product() {
 
+    LOGGER.info("{} executed", Route.V3_PRODUCT);
     return new ResponseEntity("v3 product response", HttpStatus.OK);
   }
 }
