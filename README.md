@@ -20,11 +20,15 @@ Use cases of a Rate limiter :
 
 ### Data stored in redis cluser in a sorted set
 {/v2/product}-3-400
+	
 	1627563794091 : 1627563794091
+	
 	1627563865158 : 1627563865158
 	
 {/v2/product}-10-1100
+	
 	1627563794091 : 1627563794091
+	
 	1627563865158 : 1627563865158
  
  
