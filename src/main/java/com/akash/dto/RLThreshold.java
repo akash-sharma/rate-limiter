@@ -1,5 +1,7 @@
 package com.akash.dto;
 
+import com.akash.util.Utils;
+
 public class RLThreshold {
 
   // time unit will be in seconds
@@ -18,7 +20,7 @@ public class RLThreshold {
 
   public void setKey(String clientId) {
     if (key == null) {
-      key = clientId + "-" + timeWindow + "-" + threshold;
+      key = Utils.getClusterKey(clientId) + "-" + timeWindow + "-" + threshold;
     }
   }
 
