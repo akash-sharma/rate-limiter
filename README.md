@@ -16,3 +16,15 @@ Use cases of a Rate limiter :
  when key for lua script is "{key}mykey", then "key" is used for finding single node in a cluster by using its hash
  
  https://stackoverflow.com/questions/49622787/lua-script-attempted-to-access-a-non-local-key-in-a-cluster-node
+
+
+### Data stored in redis cluser in a sorted set
+{/v2/product}-3-400
+	1627563794091 : 1627563794091
+	1627563865158 : 1627563865158
+	
+{/v2/product}-10-1100
+	1627563794091 : 1627563794091
+	1627563865158 : 1627563865158
+ 
+ 
