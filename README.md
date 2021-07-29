@@ -1,6 +1,7 @@
 # rate-limiter
 
 Use cases of a Rate limiter : 
+
 (1) You want to limit the usage of an api so that your downstream resources stay healthy and does not exhaust on high TPS. Every api has some maximum threshold limit of TPS that can bear without any system resource failure.
 
 (2) Rate limiter will help in avoiding cascading effect on downstream microservices. A service might be calling other microservices for pulling data and heavy load on a single service will have high load on its downstream services also.
