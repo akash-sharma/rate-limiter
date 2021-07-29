@@ -1,6 +1,7 @@
 package com.akash.service;
 
 import com.akash.dto.RLConfig;
+import com.akash.util.Utils;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
@@ -25,7 +26,7 @@ public class RateLimiterService {
 
   private static final Logger LOGGER = LogManager.getLogger(RateLimiterService.class);
 
-  @Value("${redisHosts:localhost:6379}")
+  @Value("${redisHosts:localhost:6379,localhost:6380,localhost:6381}")
   private String redisHosts;
 
   private JedisCluster jedisClient;
@@ -64,7 +65,7 @@ public class RateLimiterService {
 
     if (rlConfig != null) {
       String configJson = MAPPER.writeValueAsString(rlConfig);
-      String shaKey = "{" + rlConfig.getClientId() + "}";
+      String shaKey = Utils.getClusterKey(rlConfig.getClientId());
       LOGGER.info("shaKey : {} , configJson : {}", shaKey, configJson);
       Long count =
           (Long)
